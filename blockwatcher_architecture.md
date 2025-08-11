@@ -214,7 +214,7 @@ flowchart TD
         CH1 --> RECORD[Record Block in Tracker]
         RECORD --> SEND1[Send to process_tx]
         SEND1 --> CONCURRENT[Concurrent Processing]
-        CONCURRENT --> |"buffer_unordered(32)"| HANDLER[block_handler()]
+        CONCURRENT --> |"buffer_unordered(32)"| HANDLER["block_handler()"]
         HANDLER --> PROCESSED[ProcessedBlock]
     end
     
@@ -222,7 +222,7 @@ flowchart TD
         PROCESSED --> SEND2[Send to trigger_tx]
         SEND2 --> BTREE[BTreeMap for Ordering]
         BTREE --> ORDERED[Process in Order]
-        ORDERED --> TRIGGER[trigger_handler()]
+        ORDERED --> TRIGGER["trigger_handler()"]
         TRIGGER --> NOTIFY[Spawn Notification Task]
     end
     
@@ -246,7 +246,7 @@ flowchart TD
 
 ```mermaid
 stateDiagram-v2
-    [*] --> Created: NetworkBlockWatcher::new()
+    [*] --> Created: NetworkBlockWatcher.new()
     
     Created --> Initialized: watcher.start(rpc_client)
     
